@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { toast } from "react-toastify";
 import ImagesGalleryItem from "../ImageGalleryItem/ImageGalleryItem";
 import s from "./ImageGallery.module.css";
 import fetchImages from "../../ApiService/fetchImages";
@@ -19,12 +20,17 @@ class ImageGalerry extends Component {
 
     if (prevQuery !== nextQuery) {
       this.setState({ status: "pending" });
-      fetchImages(nextQuery, nextPage).then((data) =>
+      fetchImages(nextQuery, nextPage).then((data) => {
+        if (data.hits.length === 0) {
+          toast.error(`Ooops, we cant't find such query! Try again.`);
+          this.setState({ status: "idle" });
+          return;
+        }
+        this.setState({ status: "resolved", page: 1 });
         this.setState({
           images: data.hits,
-        })
-      );
-      this.setState({ status: "resolved", page: 1 });
+        });
+      });
     }
 
     if (prevPage !== nextPage) {
