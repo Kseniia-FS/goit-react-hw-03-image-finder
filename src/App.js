@@ -78,7 +78,7 @@ class App extends Component {
 
   render() {
     const { selectedImage, images, isLoading, page } = this.state;
-    console.log(page);
+
     const notLastPage = images.length / page === 12;
     const showBtn = images.length > 0 && notLastPage;
     return (
