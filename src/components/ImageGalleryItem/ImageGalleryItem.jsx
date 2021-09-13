@@ -1,11 +1,12 @@
-import { Component } from "react";
+import Image from "../Image/image";
 import s from "./ImageGalleryItem.module.css";
 
-class ImagesGalleryItem extends Component {
-  render() {
-    const { src, tag } = this.props;
-    return <img src={src} alt={tag} className={s.ImageGalleryItemImage} />;
-  }
-}
+const ImageGalleryItem = ({ tag, id, webformatURL, onSelect }) => {
+  return (
+    <li key={id} onClick={onSelect} className={s.ImageGalleryItem}>
+      <Image src={webformatURL} tag={tag} />
+    </li>
+  );
+};
 
-export default ImagesGalleryItem;
+export default ImageGalleryItem;

@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { createPortal } from "react-dom";
 import s from "./Modal.module.css";
-import ImagesGalleryItem from "../ImageGalleryItem/ImageGalleryItem";
+import Image from "../Image/image";
 
 const modalRoot = document.querySelector("#modal");
 
-export default class Modal extends Component {
+class Modal extends Component {
   componentDidMount() {
     window.addEventListener("keydown", this.handleCloseModal);
   }
@@ -35,10 +35,12 @@ export default class Modal extends Component {
     return createPortal(
       <div className={s.Overlay} onClick={this.handleBackDropClick}>
         <div className={s.Modal}>
-          <ImagesGalleryItem src={src} />
+          <Image src={src} />
         </div>
       </div>,
       modalRoot
     );
   }
 }
+
+export default Modal;
