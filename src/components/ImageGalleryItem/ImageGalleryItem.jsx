@@ -1,10 +1,9 @@
-import Image from "../Image/image";
 import s from "./ImageGalleryItem.module.css";
 
-const ImageGalleryItem = ({ tag, id, webformatURL, onSelect }) => {
+const ImageGalleryItem = ({ tag, webformatURL, onSelect }) => {
   return (
-    <li key={id} onClick={onSelect} className={s.ImageGalleryItem}>
-      <Image src={webformatURL} tag={tag} />
+    <li onClick={onSelect} className={s.ImageGalleryItem}>
+      <img src={webformatURL} alt={tag} className={s.ImageGalleryItemImage} />
     </li>
   );
 };
